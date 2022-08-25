@@ -12,12 +12,20 @@ describe("Dop distribution", function() {
 
     console.log("This is changebalance contract:", changeBalanceCreater.address);
 
+    console.log("<---- ChangeBalance Contract, First Balance Value: 0 --->");
+    changeBalanceCreater.decrease();
+    console.log("After Decrease:", await changeBalanceCreater.getBalance());
+    changeBalanceCreater.increase();
+    console.log("After Increase:", await changeBalanceCreater.getBalance());
+
     const attackContract = await ethers.getContractFactory("Attack");
     const attactCreater = await attackContract.deploy(changeBalanceCreater.address);
 
     console.log("This is attack contract:", attactCreater.address);
 
-    console.log("result: ", await attactCreater.attack());
+    console.log("<--- Attack Contract, First Balance Value: 0 --->")
+
+    await attactCreater.attack();
 
     const depositFundsContract = await ethers.getContractFactory("DepositFunds");
     const depositFundsCreater = await depositFundsContract.deploy();

@@ -11,8 +11,11 @@ contract Attack {
     }
 
     function attack() public {
-        console.log(changeBalance.getBalance());
         changeBalance.decrease();
-        console.log(changeBalance.getBalance());
+        console.log("After Decrease:", changeBalance.getBalance());
+        changeBalance.increase();
+        console.log("After Increase:", changeBalance.getBalance());
+        changeBalance.increase();
+        console.log("After Increase:", changeBalance.getBalance());
     }
 }

